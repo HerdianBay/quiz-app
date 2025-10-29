@@ -1,4 +1,5 @@
 import { SignupForm } from "@/components/signup-form";
+import type { User } from "@/utils/TypeData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,17 +13,25 @@ export default function SignUpContainer() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:4000/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fullName, email, password }),
+    const res = await fetch(`http:///localhost:4000/users?email=${email}`, {
+      method: "GET",
     });
+    const data: User[] = await res.json();
 
-    if (res.ok) {
-      alert("Signup berhasil, mengalihkan ke halaman login");
-      navigate("/login");
+    if (data.length === 0) {
+      const response = await fetch("http://localhost:4000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, email, password }),
+      });
+      if (response.ok) {
+        alert("Signup berhasil, mengalihkan ke halaman login");
+        navigate("/login");
+      } else {
+        throw new Error("Signup gagal: " + res.statusText);
+      }
     } else {
-      throw new Error("Signup gagal: " + res.statusText);
+      alert("Email sudah terdaftar, silahkan masukkan email yang lain");
     }
   };
 

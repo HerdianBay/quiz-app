@@ -27,11 +27,6 @@ export default function LoginContainer() {
         alert("Login gagal: Password salah");
       }
     }
-    // if (res.ok) {
-    //   return console.log("Login berhasil");
-    // } else {
-    //   throw new Error("Login gagal" + res.statusText);
-    // }
   };
 
   return (
