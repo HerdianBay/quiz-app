@@ -4,14 +4,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpContainer() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Signup gagal: Password dan Confirm Password tidak sesuai");
+      return;
+    }
 
     const res = await fetch(`http:///localhost:4000/users?email=${email}`, {
       method: "GET",
@@ -32,6 +37,7 @@ export default function SignUpContainer() {
       }
     } else {
       alert("Email sudah terdaftar, silahkan masukkan email yang lain");
+      return;
     }
   };
 

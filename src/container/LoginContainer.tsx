@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginContainer() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -18,13 +18,17 @@ export default function LoginContainer() {
     if (res.ok) {
       const user: User[] = await res.json();
       if (user.length === 0) {
-        return alert("Login gagal: User tidak ditemukan");
+        alert("Login gagal: User tidak ditemukan");
+        return;
       }
       if (user[0].password === password) {
+        const { fullName } = user[0];
+        sessionStorage.setItem("user", JSON.stringify({ fullName }));
         alert("Login berhasil, mengarahkan Anda ke halaman dashboard");
         navigate("/");
       } else {
         alert("Login gagal: Password salah");
+        return;
       }
     }
   };

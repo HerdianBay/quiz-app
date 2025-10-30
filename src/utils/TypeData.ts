@@ -26,3 +26,25 @@ export interface User {
   email: string;
   password: string;
 }
+
+export interface RawData {
+  response_code: number;
+  results: QuizData[];
+}
+
+export interface QuizData {
+  type: string;
+  difficulty: string;
+  category: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
+}
+
+export interface OptionsProps {
+  length: number;
+  index: number;
+  answered: boolean;
+  selectedAnswer: string;
+  handleAnswer: (option: string) => void;
+}
