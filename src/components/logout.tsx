@@ -10,6 +10,7 @@ export default function Logout() {
           sessionStorage.clear();
           navigate("/login");
         }}
+        className="hover:cursor-pointer"
       >
         Logout
       </Button>

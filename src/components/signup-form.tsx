@@ -94,7 +94,9 @@ export function SignupForm({
             </Field>
             <FieldGroup>
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button type="submit" className="hover:cursor-pointer">
+                  Create Account
+                </Button>
                 <FieldDescription className="px-6 text-center">
                   Already have an account? <Link to={"/login"}>Sign in</Link>
                 </FieldDescription>

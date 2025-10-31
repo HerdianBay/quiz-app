@@ -25,7 +25,12 @@ export default function QuizScore(props: QuizScoreProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button onClick={() => navigate("/")}>Homepage</Button>
+          <Button
+            onClick={() => navigate("/")}
+            className="hover:cursor-pointer"
+          >
+            Homepage
+          </Button>
         </CardContent>
       </Card>
     </div>

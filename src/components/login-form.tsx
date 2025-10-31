@@ -72,7 +72,9 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" className="hover:cursor-pointer">
+                  Login
+                </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account?{" "}
                   <Link to={"/signup"}>Sign up</Link>
