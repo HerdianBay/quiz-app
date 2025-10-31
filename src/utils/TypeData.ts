@@ -24,7 +24,7 @@ export interface User {
   id?: string;
   fullName: string;
   email: string;
-  password: string;
+  hashedPassword: string;
 }
 
 export interface RawData {
@@ -47,4 +47,16 @@ export interface OptionsProps {
   answered: boolean;
   selectedAnswer: string;
   handleAnswer: (option: string) => void;
+}
+
+export interface QuizScoreProps {
+  length: number;
+  score: number;
+  totalAnswered: number;
+}
+
+export interface CountdownProps {
+  minutes: number;
+  seconds: number;
+  completed: boolean;
 }

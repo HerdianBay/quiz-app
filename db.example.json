@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "fullName": "Demo User",
+      "email": "demo@example.com",
+      "hashedPassword": "$2b$10$abcdefghijklmnopqrstuvABCDEFGHIJKLMNO1234567890abcde"
+    },
+    {
+      "id": "user-002",
+      "fullName": "Test User",
+      "email": "test@example.com",
+      "hashedPassword": "$2b$10$zyxwvutsrqponmlkjihgZYXWVUTSRQPONMLK9876543210zyxwv"
+    }
+  ]
+}

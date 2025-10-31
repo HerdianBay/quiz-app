@@ -2,6 +2,7 @@ import { SignupForm } from "@/components/signup-form";
 import type { User } from "@/utils/TypeData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
 
 export default function SignUpContainer() {
   const [fullName, setFullName] = useState<string>("");
@@ -18,6 +19,8 @@ export default function SignUpContainer() {
       return;
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const res = await fetch(`http:///localhost:4000/users?email=${email}`, {
       method: "GET",
     });
@@ -27,7 +30,7 @@ export default function SignUpContainer() {
       const response = await fetch("http://localhost:4000/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, email, password }),
+        body: JSON.stringify({ fullName, email, hashedPassword }),
       });
       if (response.ok) {
         alert("Signup berhasil, mengalihkan ke halaman login");

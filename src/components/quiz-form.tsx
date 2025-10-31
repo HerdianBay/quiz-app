@@ -8,12 +8,17 @@ import {
 import { Separator } from "@/components/ui/separator";
 import type { OptionsProps, QuizData } from "@/utils/TypeData";
 import he from "he";
+import { useState } from "react";
 
 export default function QuizForm(props: QuizData & OptionsProps) {
-  const options: string[] = [props.correct_answer, ...props.incorrect_answers];
+  const [options] = useState<string[]>(
+    [props.correct_answer, ...props.incorrect_answers].sort(
+      () => Math.random() - 0.5
+    )
+  );
 
   return (
-    <div className="flex justify-center items-center min-h-svh">
+    <>
       <div className="w-md">
         <Card>
           <CardHeader>
@@ -28,14 +33,20 @@ export default function QuizForm(props: QuizData & OptionsProps) {
               {options.map((option, index) => (
                 <li
                   key={index}
-                  onClick={() => props.handleAnswer(option)}
+                  onClick={() => {
+                    if (!props.answered) props.handleAnswer(option);
+                  }}
                   className={`border-2 rounded-md p-3 hover:cursor-pointer ${
+                    props.answered
+                      ? "pointer-events-none"
+                      : "hover:cursor-pointer"
+                  } ${
                     props.answered
                       ? option === props.correct_answer
                         ? "bg-green-100 border-green-200"
                         : option === props.selectedAnswer
                         ? "bg-red-100 border-red-200"
-                        : ""
+                        : "pointer-events-none"
                       : ""
                   }`}
                 >
@@ -49,6 +60,6 @@ export default function QuizForm(props: QuizData & OptionsProps) {
           </CardFooter>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

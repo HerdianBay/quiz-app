@@ -64,10 +64,6 @@ export function SignupForm({
                   setEmail(e.target.value)
                 }
               />
-              <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
-              </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="password">Password</FieldLabel>
@@ -80,9 +76,6 @@ export function SignupForm({
                   setPassword(e.target.value)
                 }
               />
-              <FieldDescription>
-                Must be at least 8 characters long.
-              </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="confirm-password">

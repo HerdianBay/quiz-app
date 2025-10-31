@@ -1,3 +1,4 @@
+import Logout from "@/components/logout";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <div className="flex items-center justify-center min-h-svh text-center">
+      <Logout />
       <div className="w-full max-w-sm">
         <Card>
           <CardHeader>

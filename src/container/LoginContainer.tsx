@@ -1,5 +1,6 @@
 import { LoginForm } from "@/components/login-form";
 import type { User } from "@/utils/TypeData";
+import bcrypt from "bcryptjs";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +22,12 @@ export default function LoginContainer() {
         alert("Login gagal: User tidak ditemukan");
         return;
       }
-      if (user[0].password === password) {
+
+      const isMatch = await bcrypt.compare(password, user[0].hashedPassword);
+
+      console.log(user[0].email);
+
+      if (isMatch) {
         const { fullName } = user[0];
         sessionStorage.setItem("user", JSON.stringify({ fullName }));
         alert("Login berhasil, mengarahkan Anda ke halaman dashboard");
